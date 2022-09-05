@@ -7,6 +7,11 @@ import uuid
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     def connect_base():
+        USERNAME = str(uuid.uuid4())
+        PASSWORD = str(uuid.uuid4())
+        print("username:", USERNAME,)
+        print("password:", PASSWORD)
+        print("waiting for connection use the command","{connectcore",USERNAME,PASSWORD,HOST,PORT,"} to connect")
         conn, addr = s.accept()
         with conn:
             print(f"Connected by {addr}")
@@ -22,11 +27,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                     print("password correct")
                     print("connect succsesfully")
                 else:
-                    conn.sendall(b"incorrent")
+                    conn.sendall(b"incorrect")
                     print("password incorrect")
                     print(data.decode(),"was used for password")
             else: 
-                conn.sendall(b"incorent")
+                conn.sendall(b"incorrect")
                 print("username incorrect")
                 print(data.decode(),"was used for username")
 
@@ -42,12 +47,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     HOST = "127.0.0.1"  # Standard loopback interface address (localhost)
     PORT = 5021  # Port to listen on (non-privileged ports are > 1023)
-    USERNAME = str(uuid.uuid4())
-    PASSWORD = str(uuid.uuid4())
-    print("username:", USERNAME,)
-    print("password:", PASSWORD)
-    print("connecting to:", PORT)
-    print("waiting for connection use the command","{connectcore",USERNAME,PASSWORD,HOST,PORT,"}to connect")
     s.bind((HOST, PORT))
     s.listen()
 

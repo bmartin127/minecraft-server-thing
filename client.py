@@ -19,7 +19,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 print(data)
                 if data.decode() == "correct":
                     print("connect succsesful")
-                    return("succses")  
+                    connected = True
+                    return("success")  
                 else: 
                     print("failed to connect")
                     return("failed")
@@ -44,20 +45,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 connected = True
                 print("connected state:",connected)
             else:
-                print("core is already connected would you like to recnnect to it? (yes/no)")
-                yesno = input()
-                if yesno == "yes":
-                    print("Sending disconnect message to the server")
-                    s.sendall(str.encode("disconnect"))
-                    s.close()
-                    if connect_core(USERID, PASID, ADDRESS, PORT) == "succses":
-                        print("reconnected")
-                        connected = True
-                    else:
-                        connected = False
-                        
-                if yesno == "no":
-                    print("wont make any changes")
+                print("core is already connected")
+                print("wont make any changes")
     while 1 == 1:
         getcommandtyped()
     def senddata(datatosend):
