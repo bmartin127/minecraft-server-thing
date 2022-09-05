@@ -22,6 +22,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             with conn:
                 print(f"Connected by {addr}")
                 data = conn.recv(1024)
+                print("Just recieved data: {}".format(data))
                 if (data.decode()).strip() == USERNAME.strip():
                     conn.sendall(b"correct")
                     print("username correct")
@@ -51,6 +52,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
     while 1 == 1:
         data = conn.recv(1024)
+        print("Recieved data {}".format(data))
         if data.decode() == "disconnect":
             s.close()
 

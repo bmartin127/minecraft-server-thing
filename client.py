@@ -47,6 +47,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 print("core is already connected would you like to recnnect to it? (yes/no)")
                 yesno = input()
                 if yesno == "yes":
+                    print("Sending disconnect message to the server")
                     s.sendall(str.encode("disconnect"))
                     s.close()
                     if connect_core(USERID, PASID, ADDRESS, PORT) == "succses":
